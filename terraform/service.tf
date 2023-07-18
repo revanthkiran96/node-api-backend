@@ -1,3 +1,4 @@
+
 #task definition, service
 resource "aws_ecs_task_definition" "api" {
     family = "${local.tags.Name}"
@@ -12,7 +13,7 @@ resource "aws_ecs_task_definition" "api" {
         {
         
             "essential": true,
-            "image": "752692907119.dkr.ecr.ap-south-1.amazonaws.com/node-app-backend:latest",
+            "image": "464333087573.dkr.ecr.us-east-1.amazonaws.com/timing_node_app_backend:latest",
             "name": "${local.container_name}",
             "portMappings": [
                 {
@@ -26,7 +27,6 @@ resource "aws_ecs_task_definition" "api" {
     ]
     TASK_DEFINITION
 }
-
 resource "aws_ecs_service" "api" {
 
     name = "${local.tags.Name}"
@@ -35,7 +35,7 @@ resource "aws_ecs_service" "api" {
     desired_count  = 2
     launch_type = "FARGATE"
     network_configuration {
-        subnets = local.private_subent_ids
+        subnets = local.private_subnet_ids
         security_groups = [aws_security_group.api_ecs.id]
     }
     load_balancer {
