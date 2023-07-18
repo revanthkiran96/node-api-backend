@@ -1,4 +1,4 @@
-#This SG is attached API ECS
+#This SG is attached API ECs
 resource "aws_security_group" "api_ecs" {
     name        = "timing-ecs-api"
     description = "This will only allow traffic from API ALB"
